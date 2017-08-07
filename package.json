@@ -1,0 +1,30 @@
+{
+  "name": "arrowfinding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-route": "^1.6.5",
+    "angular-sanitize": "^1.6.5",
+    "angular-sweetalert": "^1.1.2",
+    "angular-ui-router": "^1.0.3",
+    "awsome": "0.0.10",
+    "bootstrap": "^3.3.7",
+    "font": "0.0.4",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "jqueryui": "^1.11.1",
+    "localtunnel": "^1.8.3",
+    "ng-sanitize": "0.0.2",
+    "ngclipboard": "^1.1.1",
+    "ngsweetalert": "^1.0.1",
+    "sweetalert2": "^6.6.6"
+  }
+}

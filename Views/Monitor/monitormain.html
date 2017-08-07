@@ -1,0 +1,362 @@
+<script>
+
+
+
+// PAGE FUNCTIONS
+
+$(document).ready(function() {
+
+    var activeSystemClass = $('.list-group-item.active');
+
+    //something is entered in search form
+    $('#system-search').keyup( function() {
+       var that = this;
+        // affect all table rows on in systems table
+        var tableBody = $('.table-list-search tbody');
+        var tableRowsClass = $('.table-list-search tbody tr');
+        $('.search-sf').remove();
+        tableRowsClass.each( function(i, val) {
+        
+            //Lower text for case insensitive
+            var rowText = $(val).text().toLowerCase();
+            var inputText = $(that).val().toLowerCase();
+            if(inputText != '')
+            {
+                $('.search-query-sf').remove();
+                tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "'
+                    + $(that).val()
+                    + '"</strong></td></tr>');
+            }
+            else
+            {
+                $('.search-query-sf').remove();
+            }
+
+            if( rowText.indexOf( inputText ) == -1 )
+            {
+                //hide rows
+                tableRowsClass.eq(i).hide();
+                
+            }
+            else
+            {
+                $('.search-sf').remove();
+                tableRowsClass.eq(i).show();
+            }
+        });
+        //all tr elements are hidden
+        if(tableRowsClass.children(':visible').length == 0)
+        {
+            tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+        }
+    });
+});
+
+
+
+
+
+
+// listen for unlock
+function unlockStartHandler() {
+    // clear raf if trying again
+    window.cancelAnimationFrame(rafID);
+    
+    // set to desired value
+    currValue = +this.value;
+}
+
+function unlockEndHandler() {
+
+    // Happends in the Change
+    $("#precent").text(currValue);
+    //alert(currValue);
+}
+
+// handle range animation
+function animateHandler() {
+
+    // calculate gradient transition
+    var transX = currValue - maxValue;
+    
+    // update input range
+    inputRange.value = currValue;
+
+    //Change slide thumb color on mouse up
+    if (currValue < 20) {
+        inputRange.classList.remove('ltpurple');
+    }
+    if (currValue < 40) {
+        inputRange.classList.remove('purple');
+    }
+    if (currValue < 60) {
+        inputRange.classList.remove('pink');
+    }
+    
+    // determine if we need to continue
+    if(currValue > -1) {
+      window.requestAnimationFrame(animateHandler);   
+    }
+    
+    // decrement value
+    currValue = currValue - speed;
+}
+
+// handle successful unlock
+function successHandler() {
+  alert('Unlocked');
+};
+
+
+var inputRange = document.getElementsByClassName('range')[0],
+    maxValue = 100, // the higher the smoother when dragging
+    speed = 5,
+    currValue, rafID;
+
+// set min/max value
+inputRange.min = 0;
+inputRange.max = maxValue;
+
+
+// bind events
+//inputRange.addEventListener('mousedown', unlockStartHandler, false);
+//inputRange.addEventListener('mousestart', unlockStartHandler, false);
+//inputRange.addEventListener('mousedown', unlockEndHandler, false);
+//inputRange.addEventListener('touchend', unlockEndHandler, false);
+
+// move gradient
+inputRange.addEventListener('input', function() {
+    //Change slide thumb color on way up
+    if (this.value > 20) {
+        inputRange.classList.add('ltpurple');
+    }
+    if (this.value > 40) {
+        inputRange.classList.add('purple');
+    }
+    if (this.value > 60) {
+        inputRange.classList.add('pink');
+    }
+
+    //Change slide thumb color on way down
+    if (this.value < 20) {
+        inputRange.classList.remove('ltpurple');
+    }
+    if (this.value < 40) {
+        inputRange.classList.remove('purple');
+    }
+    if (this.value < 60) {
+        inputRange.classList.remove('pink');
+    }
+
+    $("#precent").text(this.value);
+});
+</script>
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#page-top">ArrowFind</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                                <li class="page-scroll">
+                    <a href="#!/monitor">Product Finder</a>
+                </li>
+                 <li class="page-scroll">
+                    <a href="#!/deals">Deals</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">Paid Days : {{PaidDays}}</a>
+                </li>
+
+                <!--<li class="page-scroll">-->
+                <!--<a href="#contact">Contact</a>-->
+                <!--</li>-->
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+
+<div class="container" style="margin-top:7%">
+    <br/>
+    <div class="row">
+          <div class="col-md-12" >
+        <h2>Welcome To ArrowFind. Product Finder.</h2>
+        <h4>We are here to give you the best uer Experince. </h4>
+        <hr class="style16" />
+          </div>
+
+    </div>
+	<div class="row">
+        <div class="col-md-3"  style="margin-bottom: 15%">
+                        <h4>Search For a seller name/His Shop Name : </h4>
+                        <div style="display: flex;margin-bottom: 15px;" >
+
+                <input type="text" class="form-control" name="validate-text" id="validate-text" placeholder="Sellers Shop Name" />
+<button type="button" class="btn btn-info btn-circle btn-lg" style="margin-left: 2px;margin-bottom: 1px;margin-top: -3px"><i class="fa fa-check"></i></button>
+            </div>
+                        <h4>Search For an ebay_item_id :  </h4>
+                                    <div style="display: flex;margin-bottom: 15px;">
+
+                <input type="text" class="form-control" name="validate-text" id="validate-text" placeholder="Itm Number" />
+                <button type="button" class="btn btn-info btn-circle btn-lg" style="margin-left: 2px;margin-bottom: 0px;margin-top: -3px;"><i class="fa fa-check"></i></button>
+                            </div>
+
+            <h4 style="margin-top:12%">Margin Precent:  </h4>
+            <div style="display: flex">
+<input type="range" min="0" max="100" value="0" ng-model="precent" class="range blue" style="    margin-top: 6.5%;
+" ng-mouseup="changePrecent(precent)"/><h2 style="margin-left: 88%;
+    margin-top: 0px;
+    margin-bottom: 10px;" id="precent" ng-bind="precent" >{{precent}}</h2><h4 style="margin-top: 0px;
+    margin-bottom: 10px;">%</h4>
+            </div>
+    <h4 style="margin-top:12%">Margin Dollars:  </h4>
+    <div style="display: flex">
+    <input type="range" min="0" max="600" value="0" ng-model="dollars" class="range blue" style="    margin-top: 6.5%;
+    " ng-mouseup="changeDollars(dollars)"/><h2 style="margin-left: 88%;
+    margin-top: 0px;
+    margin-bottom: 10px;" id="dollars" ng-bind="dollars" >{{dollars}}</h2><h4 style="margin-top: 0px;
+    margin-bottom: 10px;">$</h4>
+    </div>
+                            <div style="display: flex" >
+
+    <h4> Fillter by niche? </h4>
+    <input type="checkbox" value="idokiller" ng-checked="nichechecked" ng-click="updateFillterNiche('',$event)"  ng-model="nichechecked" style="    width: 25px;
+    height: 25px;
+    padding-top: 3px;
+    margin-top: 8px;
+    margin-left: 15px;" />
+                            </div>
+                                                      <div style="display: flex" >
+
+    <input type="text" placeholder="Niche Name" ng-show="nichechecked" ng-keydown="updateFillterNiche(nichename,$event)" ng-model="nichename"/>
+                 </div>
+  </div>
+
+		<div class="col-md-9">
+                <button type="button" id="copybutton" class="btn btn-success btn-primary btn-lg" style="width: 20%;background-color: mediumseagreen"
+                ng-mouseover="copyset('all')" ng-click="copyall('all')" ngclipboard data-clipboard-text={{allCopyData}}><i class="fa fa-copy"> Copy All</i></button>
+<button type="button"  class="btn btn-primary btn-circle btn-lg" style="width: 20%"><i class="fa fa-copy"  
+ ng-click="copyall('amazon')" ng-mouseover="copyset('amazon')" ngclipboard data-clipboard-text={{allCopyData}}> Amazon Copy</i></button>
+<button type="button" class="btn btn-primary btn-circle btn-lg" style="width: 20%"><i class="fa fa-copy"
+ ng-click="copyall('walmart')" ng-mouseover="copyset('walmart')" ngclipboard data-clipboard-target="#trustedHtml"}> WalMart Copy</i></button>
+<button type="button" class="btn btn-primary btn-circle btn-lg" style="width: 30%"><i class="fa fa-copy"> More In Next Version....</i></button>
+<div id="trustedHtml"  ng-bind-html="trustedHtml"></div>
+                <form action="#" method="get" style="margin-top:4px;">
+                <div class="input-group">
+                <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
+                <input class="form-control"  id="system-search" name="q" placeholder="Search for" required>
+                <span class="input-group-btn">
+                <button type="submit" class="btn btn-default"  style="background-color: #2c3e50;"><i class="fa fa-search"  style="height: 21px;"></i></button>
+                </span>
+                </div>
+                </form>
+         <div class="panel panel-primary">
+                                     <div class="panel-heading">
+                <h3 class="panel-title">Results</h3>
+            </div>
+            <table class="table table-list-search">
+                    <thead>
+                        <tr class="filters">
+                            <th>Asin/Ip...</th>
+                            <th>DestLink</th>
+                            <th>DestPrice</th>
+                            <th>EbayLink</th>
+                            <th>EbayPrice</th>
+                            <th>Margin</th>
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in resultsSearchUpdated" ng-model="resultsSearchUpdated">
+                            <td class="itemid">{{data.id}}</td>
+                            <td><a href={{data.Product_Source}} target="_blank">Product Source</a></td>
+                            <td>{{data.SourcePrice}}</td>
+                            <td><a href={{data.Ebay_Link}} target="_blank">Ebay Link</a></td>     
+                            <td>{{data.Ebay_Price}}</td>                       
+                            <td>{{data.Margin}}</td>
+                        </tr>
+                    </tbody>
+                </table>   
+		</div>
+
+    <br/>
+    <br/>
+    <br/>
+
+</div>
+
+
+</div>
+    </div>
+  <div class="footer-below">
+<footer>
+  <div class="">
+    <div class="row" style="margin-right: 7.62%;
+    margin-left: 7.62%;
+    padding-left: 15px;
+    padding-right: 15px;">
+      <div class="col-md-6 col-sm-6 footerleft ">
+        <div class="logofooter"> <img src="../images/loggg@x2.png"/></div>
+        <p><i class="fa fa-map-pin"></i>rishon le zion, israel </p>
+        <p><i class="fa fa-phone"></i> Phone (israel) : +972 - 527368883</p>
+        <p><i class="fa fa-envelope"></i> E-mail : iuyt9003@gmail.com</p>
+        
+      </div>
+      <div class="col-md-2 col-sm-6 paddingtop-bottom" style="right:9%">
+        <h6 class="heading7">Relevent Links</h6>
+        <ul class="footer-ul">
+          <li><a href="#"> Our Policy</a></li>
+          <li><a href="#"> Terms Of Service</a></li>
+          <li><a href="#"> AutoMatic Search</a></li>
+          <li><a href="#"> Use And Results</a></li>
+          <li><a href="#"> Support and Help</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 col-sm-6 paddingtop-bottom " >
+        <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+          <div class="fb-xfbml-parse-ignore">
+                    <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss r1" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook r1" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter r1" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle r1" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin r1" title="Linkedin"><i class="fa fa-linkedin" ></i></a></li>
+                    </ul>	
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--footer start from here-->
+
+<div class="copyright">
+  <div class="container">
+    <div class="col-md-6">
+      <p>© 2017 - All Rights with FindArrow</p>
+    </div>
+  </div>
+</div>
+
+</footer>
+    </div>

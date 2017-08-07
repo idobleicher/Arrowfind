@@ -1,0 +1,215 @@
+<style>
+
+.box {
+    border-radius: 3px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    padding: 10px 25px;
+    text-align: right;
+    display: block;
+    margin-top: 60px;
+}
+.box-icon {
+    background-color:rgb(44, 62, 80);
+    border-radius: 50%;
+    display: table;
+    height: 100px;
+    margin: 0 auto;
+    width: 100px;
+    margin-top: -61px;
+}
+.box-icon span {
+    color: #fff;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.info h4 {
+    font-size: 26px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.info > p {
+    color: #717171;
+    font-size: 16px;
+    padding-top: 10px;
+    text-align: justify;
+}
+.info > a {
+    background-color: #03a9f4;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+    transition: all 0.5s ease 0s;
+}
+.info > a:hover {
+    background-color: #0288d1;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+    transition: all 0.5s ease 0s;
+}
+</style>
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#page-top">ArrowFind</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li>
+                    <a href="#!/login">התחברות</a>
+
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">קצת עלינו</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#pricing">מחירים</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#profit">תוצאות של משתמשים</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#portfolio">?מה הרווח שלכם</a>
+                </li>
+
+                <!--<li class="page-scroll">-->
+                <!--<a href="#contact">Contact</a>-->
+                <!--</li>-->
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<header>
+</header>
+<section id="poro">
+<!-- Portfolio Grid Section -->
+   <div class="container">
+
+       
+</div>
+        <div class="row">
+			    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3"> 
+      <br/>
+            <div class="col-lg-12 text-center" >
+                            <div class="box">
+                <div class="box-icon">
+                <span class="fa fa-4x fa-user"></span>        
+                </div>
+				   <br/>
+                    <h4 class="info text-center">התחברות או הרשמה משתמש</h4>
+				<form id="form" name="setup" class="setup info" enctype="multipart/form-data" method="POST" style="margin-bottom: 15%" novalidate>
+
+				<div class="input-group" style="width: 100%;">
+				<span class="input-group-addon" style="width:9.75px;"><i class="fa fa-envelope" style="width: 9.65px;"></i></span>
+				<input id="email" type="email" class="form-control email validate valid" name="email" ng-model="email" value="" placeholder="איימל" required>                                        
+
+
+                </div>
+
+				<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-lock"></i></span>
+				<input id="password" type="password" class="form-control password validate valid"  name="password" ng-model="password" placeholder="סיסמא" ng-minlength='6' required>
+
+                </div> 
+                                
+			<div class="form-group">
+				<!-- Button -->
+				<div class="col-md-12 col-sm-12 controls" style="padding-right: 0px;">
+				<button type="submit" href="#" class="btn btn-primary pull-right"   ng-disabled="setup.password.$error.minlength && setup.password.$valid && setup.email.$valid" > התחברות <i class="fa fa-sign-in"  
+                ></i> </button>
+
+                <button type="submit" ng-disabled="setup.password.$error.minlength && setup.password.$valid && setup.email.$valid"  
+                href="#" class="btn btn-primary pull-right" style="margin-right: 10px;">
+                  הרשמה   <i class="fa fa-user-plus"></i></button> 
+								<br/>  				<br/>  				<br/>  			
+                   
+				</div>
+				</div>
+
+				</form>   
+                <div class="row">
+                <div class="col-md-6 col-sm-6">
+                <h5 class="alert alert-success" style="    background-color:green;
+    border-color: green" ng-show="setup.email.$invalid">האיימל אינו תקין</h5> 
+                </div>
+                <div class="col-md-6 col-sm-6">
+            <h5 class="alert alert-success" style="    background-color: green;
+    border-color: green;" ng-show="setup.password.$error.minlength || setup.password.$invalid">גודל הסיסמא חייב להיות לפחות 6 אותיות</h5>
+                </div>           
+                </div>  
+            </div>
+            </div>
+                            <br/>
+                <br/>
+			    </div>
+
+        </div>
+   </div>
+</section>
+
+    <div class="footer-below" style="margin-top: 5%;">
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 footerleft ">
+        <div class="logofooter"> <img src="../images/loggg@x2.png"/></div>
+        <p><i class="fa fa-map-pin"></i>rishon le zion, israel </p>
+        <p><i class="fa fa-phone"></i> Phone (israel) : +972 - 527368883</p>
+        <p><i class="fa fa-envelope"></i> E-mail : iuyt9003@gmail.com</p>
+        
+      </div>
+      <div class="col-md-2 col-sm-6 paddingtop-bottom" style="text-align: right;right:9%">
+        <h6 class="heading7">קישורים שימושים</h6>
+        <ul class="footer-ul">
+          <li><a href="#"> המדיניות שלנו</a></li>
+          <li><a href="#"> תנאי שימוש</a></li>
+          <li><a href="#"> חיפוש אוטומטי</a></li>
+          <li><a href="#"> ביצוע ותוצאה</a></li>
+          <li><a href="#"> תמיכה ועזרה</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 col-sm-6 paddingtop-bottom " >
+        <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+          <div class="fb-xfbml-parse-ignore">
+                    <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss r1" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook r1" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter r1" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle r1" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin r1" title="Linkedin"><i class="fa fa-linkedin" ></i></a></li>
+                    </ul>	
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--footer start from here-->
+
+<div class="copyright">
+  <div class="container">
+    <div class="col-md-6">
+      <p>© 2017 - All Rights with FindArrow</p>
+    </div>
+  </div>
+</div>
+    </div>
+</footer>
